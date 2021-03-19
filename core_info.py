@@ -3,7 +3,7 @@ import numpy as np
 
 ###INFO about the dweller
 class Dweller:
-    def __init__(self,name,stats):
+    def __init__(self,name,stats): #i think **kwargs solve the problem of ()
         self.name = name
         if not isinstance(stats,list) or len(stats)!= 1:
             raise Exception("error")

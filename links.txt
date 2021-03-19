@@ -1,3 +1,8 @@
 https://www.fantasynamegenerators.com/anime-attack-names.php
 https://stackoverflow.com/questions/1084977/python-how-can-i-import-all-variables
 https://stackoverflow.com/questions/45288941/how-to-check-if-args0-exists
+
+#damage equations
+https://rmvxace.fandom.com/wiki/Damage_Formula_Reference_Guide
+https://genshin-impact.fandom.com/wiki/Damage
+https://gamedev.stackexchange.com/questions/14309/how-to-develop-rpg-damage-formulas
