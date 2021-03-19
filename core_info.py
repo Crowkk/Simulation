@@ -24,6 +24,11 @@ class move: #this class will probably have an instance that is the Statuses/Cond
         self.name = name
         self.stats = stats
         self.kind = kind
+    def attacking_streak(self,streak):
+        self.streak = streak
+    def speed_penalty(self,penalty,streak):
+        self.speed_mod =  1/(penalty**self.streak) #this a balance feature that decreases the effective speed of a Dweller the more it attacks
+    #this self.streak might turn out to be an Error of some sort
 
 Fae_stats = np.array([500,0.05,0.95,0.05,0.5,50,50,50,50,50,50])
 Arson_stats = np.array([500,0.05,0.95,0.05,0.5,50,50,50,50,50,50])
@@ -36,11 +41,17 @@ Arsonist = Dweller("Arson",Arson_stats,1,1,1,1)
 #then it checks whether or not it hits
 #then if it's a critical
 #then subtracts from defender's current HP
-def turn():
-    ...
+def turn(Dweller1,Dweller2):
+    Dweller1.streak = 0
+    Dweller2.streak = 0
 
-def who_attacks():
-    ...
+def who_attacks(Dweller1,Dweller2):
+    eff_speed1 = Dweller1.stats[4]*Dweller1.speed_mod
+    eff_speed2 = Dweller2.stats[4]*Dweller2.speed_mod
+    prob_dweller1 = eff_speed1/(eff_speed1+eff_speed2)
+    attacker_choice = np.random.choice([Dweller1,Dweller2],[prob_dweller1,1-prob_dweller1])
+    attacker = np.copy(attacker_choice)
+    return attacker #have to understand np.random.choice so I generate a list with the selected results in order and return them
 
 def damage(base_damage,kind,attack_stats,def_stats): #probably better within a Dweller class
     ...
