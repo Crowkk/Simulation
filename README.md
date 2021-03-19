@@ -24,7 +24,7 @@ The other side of Evasiveness. How likely they are to land an attack.
 After confirming that the attack has hit the target, Luck influences the odds of it being a critical hit
 
 ### Stamina
-In earlier versions of the game - back in 2016 - I used to have characters with a Speed status and pick the attacking one by weighing an attacking probabily as speed<sub>dweller</sub>/(speed<sub>dweller</sub>+speed<sub>another</sub>), however this showed to be extremely delicate to changes in the 
+In earlier versions of the game - back in 2016 - I used to have characters with a Speed status and pick the attacking one by weighing an attacking probabily as <a href="https://www.codecogs.com/eqnedit.php?latex=\frac{speed_{one}}{speed_{one}&plus;speed_{another}}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\frac{speed_{one}}{speed_{one}&plus;speed_{another}}" title="\frac{speed_{one}}{speed_{one}+speed_{another}}" /></a>, however this showed to be extremely delicate to changes in the 
 
 ### Physical attack and armor
 ### Elemental attack and shroud
