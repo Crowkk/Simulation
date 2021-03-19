@@ -9,18 +9,18 @@ In this game, there'll be several fighters of which the user will choose two, th
 
 ## General aspects
 
-The core of the game is to have two dwellers fighting and betting on who will win. To make the game more interesting and complete, there will be not only the dwellers but an enviroment, modifiers and the dwellers are not static, their positions will be taken into account (this one might come in later on). As far as I know, most games have at most two status sets: physical and elemental; Characters deal damage according to their specialized status attack versus the target's corresponding defense. Here I chose to add a third category and the status will be physical, elemental or magical. To visualize this think of those as a punch, a fire blast and shadow ball. It is as if each category corresponds to a different source. 
+The core of the game is to have two dwellers fighting and betting on who will win. To make the game more interesting and complete, there will be not only the dwellers but an enviroment, modifiers and the dwellers are not static, their positions will be taken into account (this one might come in later on). As far as I know, most games have at most two status sets: physical and elemental; Characters deal damage according to their specialized status attack versus the target's corresponding defense. Here I chose to add a third category and the status will be physical, elemental or magical. To visualize this think of those as a punch, a fire blast and shadow ball. It is as if each category corresponds to a different source. Now that we've covered the bare basics let's dive a little into the data of a dweller.
 
-As for statuses, the dwellers will be defined by the following informations:
-
-* Name
-* Evasiveness
-* Accuracy
-* Luck
-* Health
-* Speed
-* Physical attack and armor
-* Elemental attack and shroud
-* Magical attack and aura
-* Naturality
-* Aspect
+### Health 
+    text
+### Evasiveness
+### Accuracy
+### Luck
+### Speed
+### Physical attack and armor
+### Elemental attack and shroud
+### Magical attack and aura
+### Naturality
+### Aspect
+### Affinity
+### Interactions
