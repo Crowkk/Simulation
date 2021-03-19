@@ -19,7 +19,7 @@ class Dweller:
         ...
 
 #INFO about the move
-class move: #this class will probably have an instance that is the Statuses/Conditions Class
+class Move: #this class will probably have an instance that is the Statuses/Conditions Class
     def __init__(self,name,stats,kind): #and additional info for secondary effects etc
         self.name = name
         self.stats = stats
@@ -46,20 +46,21 @@ def turn(Dweller1,Dweller2):
     Dweller2.streak = 0
 
 def who_attacks(Dweller1,Dweller2):
-    eff_speed1 = Dweller1.stats[4]*Dweller1.speed_mod
+    eff_speed1 = Dweller1.stats[4]*Dweller1.speed_mod #i have to adjust speed and stamina
     eff_speed2 = Dweller2.stats[4]*Dweller2.speed_mod
     prob_dweller1 = eff_speed1/(eff_speed1+eff_speed2)
-    attacker_choice = np.random.choice([Dweller1,Dweller2],[prob_dweller1,1-prob_dweller1])
-    attacker = np.copy(attacker_choice)
-    return attacker #have to understand np.random.choice so I generate a list with the selected results in order and return them
+    attacker_choice = np.random.choice([Dweller1,Dweller2],p=[prob_dweller1,1-prob_dweller1],size = 2,replace=False)
+    attacker = np.deepcopy(attacker_choice[0])
+    defender = np.deepcopy(attacker_choice[1])
+    return attacker,defender #have to understand np.random.choice so I generate a list with the selected results in order and return them
 
 def damage(base_damage,kind,attack_stats,def_stats): #probably better within a Dweller class
     ...
 
-def does_hit():
+def does_hit(move,attacker,defender):
     ...
 
-def is_crit():
+def is_crit(move,attacker,defender):
     ...
 
 
