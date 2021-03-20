@@ -31,8 +31,10 @@ class Move: #this class will probably have an instance that is the Statuses/Cond
 
 Fae_stats = np.array([500,0.05,0.95,0.05,0.5,50,50,50,50,50,50])
 Arson_stats = np.array([500,0.05,0.95,0.05,0.5,50,50,50,50,50,50])
-Fairy = Dweller("Fae",Fae_stats,1,1,1,1)
-Arsonist = Dweller("Arson",Arson_stats,1,1,1,1)
+Flamethrower = Move("Flamethrower",np.array([50,0.05,0.98,4]),2,0)
+Fae_dust = Move("Fae Dust",np.array([50,0.05,0.98,4]),2,0)
+Fairy = Dweller("Fae",Fae_stats,1,1,1,1,np.array([Flamethrower,Fae_dust]))
+Arsonist = Dweller("Arson",Arson_stats,1,1,1,1,np.array([Flamethrower,Fae_dust]))
 
 #Each turn will go as follows (in the most basic way)
 #firstly the attacker is picked according to a function
