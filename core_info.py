@@ -3,7 +3,7 @@ from copy import *
 
 ###INFO about the dweller
 class Dweller:
-    def __init__(self,name,stats,lore,naturality,interactions,trait): #i think **kwargs solve the problem of ()
+    def __init__(self,name,stats,lore,naturality,interactions,trait,move_set): #i think **kwargs solve the problem of ()
         self.name = name #Name of the Dweller
         if not isinstance(stats,np.ndarray) or len(stats)!= 11: #this one was just for practice
             raise Exception("error")
@@ -22,15 +22,12 @@ class Dweller:
 
 #INFO about the move
 class Move: #this class will probably have an instance that is the Statuses/Conditions Class
-    def __init__(self,name,stats,kind): #and additional info for secondary effects etc
+    def __init__(self,name,stats,kind,element,secondary=None): #and additional info for secondary effects etc
         self.name = name
-        self.stats = stats
-        self.kind = kind
-    def attacking_streak(self,streak):
-        self.streak = streak
-    def speed_penalty(self,penalty,streak):
-        self.speed_mod =  1/(penalty**self.streak) #this a balance feature that decreases the effective speed of a Dweller the more it attacks
-    #this self.streak might turn out to be an Error of some sort
+        self.stats = stats #damage crit acc falloff area 
+        self.kind = kind #physical elemental etc
+        self.element = element #fire etc
+        self.secondary = secondary
 
 Fae_stats = np.array([500,0.05,0.95,0.05,0.5,50,50,50,50,50,50])
 Arson_stats = np.array([500,0.05,0.95,0.05,0.5,50,50,50,50,50,50])
@@ -46,7 +43,7 @@ Arsonist = Dweller("Arson",Arson_stats,1,1,1,1)
 def turn(Dweller1,Dweller2):
     Dweller1.streak = 0
     Dweller2.streak = 0
-    attacker, defender = who_attacks(Dweller1,Dweller2)
+    attacker, defender = who_attacks(Dweller1,Dweller2) 
 
 def who_attacks(Dweller1,Dweller2):
     eff_speed1 = Dweller1.priority() #i have to adjust speed and stamina
