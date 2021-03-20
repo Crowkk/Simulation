@@ -9,6 +9,14 @@ https://gamedev.stackexchange.com/questions/14309/how-to-develop-rpg-damage-form
 
 https://stackoverflow.com/questions/36901/what-does-double-star-asterisk-and-star-asterisk-do-for-parameters?rq=1
 
+https://www.geeksforgeeks.org/python-decorators-a-complete-guide/?ref=rp
+https://www.geeksforgeeks.org/conditional-decorators-in-python/?ref=rp
+https://www.geeksforgeeks.org/chain-multiple-decorators-in-python/?ref=rp
+https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python?rq=1
+https://stackoverflow.com/questions/10044321/class-classnameobject-what-sort-of-word-is-object-in-python
+https://www.journaldev.com/33500/python-valueerror-exception-handling-examples
+https://www.geeksforgeeks.org/class-as-decorator-in-python/
+
 #auto update attributes 
 https://stackoverflow.com/questions/14916284/in-class-object-how-to-auto-update-attributes
 https://www.programiz.com/python-programming/property
