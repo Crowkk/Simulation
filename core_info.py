@@ -15,10 +15,13 @@ class Dweller:
         self.interactions = interactions #a matrix containing modifiers for the Dweller
         self.trait = trait #changes the behavior depending on the context of the fight this might be tough to code
         #need to have still current_hp, buffs, conditional_effects, external_info
+        self.move_set = move_set
     def update_health(self,stats): #current_hp, cond_effects and external_info too
         ...
     def priority(self):
         return self.stats[4]/(2**self.streak)
+
+###probably have a raw_dweller class and a class for the mathematics involved
 
 #INFO about the move
 class Move: #this class will probably have an instance that is the Statuses/Conditions Class
@@ -42,10 +45,7 @@ Arsonist = Dweller("Arson",Arson_stats,1,1,1,1,np.array([Flamethrower,Fae_dust])
 #then it checks whether or not it hits
 #then if it's a critical
 #then subtracts from defender's current HP
-def turn(Dweller1,Dweller2):
-    Dweller1.streak = 0
-    Dweller2.streak = 0
-    attacker, defender = who_attacks(Dweller1,Dweller2) 
+
 
 def who_attacks(Dweller1,Dweller2):
     eff_speed1 = Dweller1.priority() #i have to adjust speed and stamina
@@ -54,18 +54,43 @@ def who_attacks(Dweller1,Dweller2):
     attacker_choice = np.random.choice([Dweller1,Dweller2],p=[prob_dweller1,1-prob_dweller1],size = 2,replace=False)
     attacker = attacker_choice[0]
     defender = attacker_choice[1]
-    return [deepcopy(attacker),deepcopy(defender)] #have to understand np.random.choice so I generate a list with the selected results in order and return them
+    print(attacker.name,defender.name)
+    return attacker,defender #have to understand np.random.choice so I generate a list with the selected results in order and return them
 
-def damage(base_damage,kind,attack_stats,def_stats): #probably better within a Dweller class
-    ...
+def combat(attacker,defender):
+    def is_crit(move,attacker):
+        c = move.stats[1]*attacker.stats[3]>=np.random.random()
+        if c:
+            print("Critical hit!")
+            return 1+0.5*c
+        return 1
 
-def does_hit(move,attacker,defender):
-    ...
+    def damage(move,attacker,defender): #probably better within a Dweller class
+        return move.stats[0]*attacker.stats[5]/defender.stats[6]
+        
+    move = np.random.choice(attacker.move_set)
+    total_accuracy = attacker.stats[2]*move.stats[2]*(1-defender.stats[1])
+    is_hit = np.random.random() <= total_accuracy
+    if not is_hit:
+        print(defender.name + " dodged the attack")
+        return 0
+    return is_crit(move,attacker)*damage(move,attacker,defender)
+    
+def turn(Dweller1,Dweller2):
+    while Dweller1.stats[0]*Dweller2.stats[0] >0:
+        Dweller1.streak = 0
+        Dweller2.streak = 0
+        attacker, defender = who_attacks(Dweller1,Dweller2) 
+        dmg = combat(attacker,defender)
+        if dmg:
+            defender.stats[0] -= dmg
+            print(defender.name, ' was dealt ',str(dmg),' damage')
+        
+    if Dweller1.stats[0] <= 0: ##use np.where 
+        print(Dweller1.name, " died")
+    elif Dweller2.stats[0] <=0:
+        print(Dweller2.name, " lost")
 
-def is_crit(move,attacker,defender):
-    ...
+
 
 turn(Fairy,Arsonist)
-
-
-
