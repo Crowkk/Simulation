@@ -1,5 +1,5 @@
 import numpy as np
-
+from copy import *
 
 ###INFO about the dweller
 class Dweller:
@@ -17,6 +17,8 @@ class Dweller:
         #need to have still current_hp, buffs, conditional_effects, external_info
     def update_health(self,stats): #current_hp, cond_effects and external_info too
         ...
+    def priority(self):
+        return self.stats[4]/(2**self.streak)
 
 #INFO about the move
 class Move: #this class will probably have an instance that is the Statuses/Conditions Class
@@ -44,15 +46,16 @@ Arsonist = Dweller("Arson",Arson_stats,1,1,1,1)
 def turn(Dweller1,Dweller2):
     Dweller1.streak = 0
     Dweller2.streak = 0
+    attacker, defender = who_attacks(Dweller1,Dweller2)
 
 def who_attacks(Dweller1,Dweller2):
-    eff_speed1 = Dweller1.stats[4]*Dweller1.speed_mod #i have to adjust speed and stamina
-    eff_speed2 = Dweller2.stats[4]*Dweller2.speed_mod
+    eff_speed1 = Dweller1.priority() #i have to adjust speed and stamina
+    eff_speed2 = Dweller2.priority()
     prob_dweller1 = eff_speed1/(eff_speed1+eff_speed2)
     attacker_choice = np.random.choice([Dweller1,Dweller2],p=[prob_dweller1,1-prob_dweller1],size = 2,replace=False)
-    attacker = np.deepcopy(attacker_choice[0])
-    defender = np.deepcopy(attacker_choice[1])
-    return attacker,defender #have to understand np.random.choice so I generate a list with the selected results in order and return them
+    attacker = attacker_choice[0]
+    defender = attacker_choice[1]
+    return [deepcopy(attacker),deepcopy(defender)] #have to understand np.random.choice so I generate a list with the selected results in order and return them
 
 def damage(base_damage,kind,attack_stats,def_stats): #probably better within a Dweller class
     ...
@@ -63,6 +66,7 @@ def does_hit(move,attacker,defender):
 def is_crit(move,attacker,defender):
     ...
 
+turn(Fairy,Arsonist)
 
 
 
