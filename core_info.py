@@ -22,11 +22,6 @@ class Dweller:
         return self.stats[4]/(2**self.streak)
 
 
-    def priority(self):
-        return self.stats[4]/(2**self.streak)
-
-###probably have a raw_dweller class and a class for the mathematics involved
-
 #INFO about the move
 class Move: #this class will probably have an instance that is the Statuses/Conditions Class
     def __init__(self,name,stats,kind,element,secondary=None): #and additional info for secondary effects etc
@@ -95,4 +90,5 @@ def turn(Dweller1,Dweller2): #general turn
 
 
 
-#turn(Fairy,Arsonist)
+
+

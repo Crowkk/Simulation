@@ -56,9 +56,10 @@ A matrix that outputs the modifier from said dweller to target dweller.
 - [ ] Add positions and mobility
 - [ ] Actually implement movesets
 - [ ] Make a decent damage function
-- [ ] Comment the code before I get lost in it 
-- [ ] Add enviroment
-- [ ] Add ambient modifiers
+- [ ] \*Add Naturality (more difficult than I thought)
+- [x] Comment the code before I get lost in it 
+- [ ] \*Add enviroment (will come with Naturality)
+- [ ] \*Add ambient modifiers (will come with Naturality)
 - [ ] Buffs and Debuff
 - [ ] Status effects like poisoning etc
 - [ ] \*Add customization (equip items etc)
