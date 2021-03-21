@@ -93,4 +93,4 @@ def turn(Dweller1,Dweller2):
 
 
 
-turn(Fairy,Arsonist)
+#turn(Fairy,Arsonist)
