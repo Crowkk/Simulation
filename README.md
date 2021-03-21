@@ -51,18 +51,18 @@ A matrix that outputs the modifier from said dweller to target dweller.
 
 
 
-##TODO
+## TODO
 
-[ ] Add positions and mobility
-[ ] Actually implement movesets
-[ ] Make a decent damage function
-[ ] Comment the code before I get lost in it 
-[ ] Add enviroment
-[ ] Add ambient modifiers
-[ ] Buffs and Debuff
-[ ] Status effects like poisoning etc
-[ ] \*Add customization (equip items etc)
-[ ] \*User actively interacts
-[ ] Code for the statistics and balancing
+- [ ] Add positions and mobility
+- [ ] Actually implement movesets
+- [ ] Make a decent damage function
+- [ ] Comment the code before I get lost in it 
+- [ ] Add enviroment
+- [ ] Add ambient modifiers
+- [ ] Buffs and Debuff
+- [ ] Status effects like poisoning etc
+- [ ] \*Add customization (equip items etc)
+- [ ] \*User actively interacts
+- [ ] Code for the statistics and balancing
  
 
