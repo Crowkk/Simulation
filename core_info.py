@@ -16,8 +16,12 @@ class Dweller:
         self.trait = trait #changes the behavior depending on the context of the fight this might be tough to code
         #need to have still current_hp, buffs, conditional_effects, external_info
         self.move_set = move_set
-    def update_health(self,stats): #current_hp, cond_effects and external_info too
-        ...
+        self.streak = 0
+    @property
+    def speed(self):
+        return self.stats[4]/(2**self.streak)
+
+
     def priority(self):
         return self.stats[4]/(2**self.streak)
 
@@ -48,44 +52,42 @@ Arsonist = Dweller("Arson",Arson_stats,1,1,1,1,np.array([Flamethrower,Fae_dust])
 
 
 def who_attacks(Dweller1,Dweller2):
-    eff_speed1 = Dweller1.priority() #i have to adjust speed and stamina
-    eff_speed2 = Dweller2.priority()
-    prob_dweller1 = eff_speed1/(eff_speed1+eff_speed2)
+    eff_speed1 = Dweller1.speed #outputs a different speed depending on the streak (streak to be implemented)
+    eff_speed2 = Dweller2.speed
+    prob_dweller1 = eff_speed1/(eff_speed1+eff_speed2) #weighs the prob of being Dweller1 the attacker
     attacker_choice = np.random.choice([Dweller1,Dweller2],p=[prob_dweller1,1-prob_dweller1],size = 2,replace=False)
     attacker = attacker_choice[0]
     defender = attacker_choice[1]
-    print(attacker.name,defender.name)
-    return attacker,defender #have to understand np.random.choice so I generate a list with the selected results in order and return them
+    return attacker,defender #outputs who attacks and who defends
 
-def combat(attacker,defender):
-    def is_crit(move,attacker):
-        c = move.stats[1]*attacker.stats[3]>=np.random.random()
-        if c:
+def combat(attacker,defender): #routine related to the combat alone, outputs the final damage
+    def is_crit(move,attacker): #calculates the critical stuff
+        c = move.stats[1]*attacker.stats[3]>=np.random.random() #whether or not a critical landed
+        if c: #it did
             print("Critical hit!")
-            return 1+0.5*c
-        return 1
+            return 1+0.5*c #bonus damage
+        return 1 #no bonus modifier
 
-    def damage(move,attacker,defender): #probably better within a Dweller class
-        return move.stats[0]*attacker.stats[5]/defender.stats[6]
+    def damage(move,attacker,defender): #calculates final damage
+        return move.stats[0]*attacker.stats[5]/defender.stats[6] #simple formula base damage * (attacker_attack)/defender_defense
         
-    move = np.random.choice(attacker.move_set)
-    total_accuracy = attacker.stats[2]*move.stats[2]*(1-defender.stats[1])
-    is_hit = np.random.random() <= total_accuracy
+    move = np.random.choice(attacker.move_set) #randomly choose an attack
+    total_accuracy = attacker.stats[2]*move.stats[2]*(1-defender.stats[1]) #combine all accuracy and evasivenesses involved
+    is_hit = np.random.random() <= total_accuracy #does hit
     if not is_hit:
         print(defender.name + " dodged the attack")
         return 0
-    return is_crit(move,attacker)*damage(move,attacker,defender)
+    return is_crit(move,attacker)*damage(move,attacker,defender) #damage
     
-def turn(Dweller1,Dweller2):
-    while Dweller1.stats[0]*Dweller2.stats[0] >0:
-        Dweller1.streak = 0
-        Dweller2.streak = 0
-        attacker, defender = who_attacks(Dweller1,Dweller2) 
-        dmg = combat(attacker,defender)
-        if dmg:
-            defender.stats[0] -= dmg
+def turn(Dweller1,Dweller2): #general turn
+    while Dweller1.stats[0]*Dweller2.stats[0] >0: #both are alive
+        attacker, defender = who_attacks(Dweller1,Dweller2) #chose the attacker for the turn
+        dmg = combat(attacker,defender) #calculated the damage
+        if dmg: #was there any damage?
+            defender.stats[0] -= dmg #subtracts from total hp
             print(defender.name, ' was dealt ',str(dmg),' damage')
         
+    #this snipet will change soon, works fine it's just ugly
     if Dweller1.stats[0] <= 0: ##use np.where 
         print(Dweller1.name, " died")
     elif Dweller2.stats[0] <=0:
