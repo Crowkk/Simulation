@@ -3,7 +3,7 @@
 ## This is an outdated version of this minigame; The newer one is being implemented and will overwrite this when it is more complete
 
 ## Motivation
-This is just a mini simulation game. I like programming but I rarely have the need to use several of the things that are more advanced. At least not for now, most of what I use I usually already know so I want to challenge myself. Also, I really like the balacing aspect of gaming design and data analysis in general so this is a good way of mixing both. 
+This is just a mini simulation game. I like programming but many programming features that I'd like to use just don't come up naturally in my daily coding. So this repo is just for me to practice some programming and try to implement features, like a personal challenge.. Also, I really like the balacing aspect of gaming design and data analysis in general so this is a good way of mixing both. 
 
 So far I don't know how to implement any sort of graphics or real-time interactions but these will be left for the future.
 
