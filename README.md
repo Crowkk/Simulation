@@ -1,6 +1,6 @@
 # Simulation
 
-##This is an outdated version of this minigame; The newer one is being implemented and will overwrite this when it is more complete
+## This is an outdated version of this minigame; The newer one is being implemented and will overwrite this when it is more complete
 
 ## Motivation
 This is just a mini simulation game. I like programming but I rarely have the need to use several of the things that are more advanced. At least not for now, most of what I use I usually already know so I want to challenge myself. Also, I really like the balacing aspect of gaming design and data analysis in general so this is a good way of mixing both. 
